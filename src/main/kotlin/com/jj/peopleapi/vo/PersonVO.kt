@@ -6,6 +6,7 @@ import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 
 data class PersonVO (
+
     var id: Long? = null,
 
     @field: NotBlank(message = "Name is required")
@@ -17,6 +18,7 @@ data class PersonVO (
 
     @field: Email(message = "Invalid email")
     var email: String? = null,
+    
 ) {
     fun toModel(): Person = Person(this.id, this.name, this.cpf, this.email)
 }

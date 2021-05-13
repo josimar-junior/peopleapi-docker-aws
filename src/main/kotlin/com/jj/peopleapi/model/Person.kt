@@ -6,6 +6,7 @@ import javax.persistence.*
 @Entity
 @Table(name = "person")
 data class Person (
+
     @Id
     @SequenceGenerator(name = "person_seq", sequenceName = "person_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
@@ -18,8 +19,7 @@ data class Person (
     var cpf: String = "",
 
     var email: String? = null,
+
 ) {
-    fun toVO(): PersonVO {
-        return PersonVO(this.id, this.name, this.cpf, this.email)
-    }
+    fun toVO(): PersonVO = PersonVO(this.id, this.name, this.cpf, this.email)
 }
