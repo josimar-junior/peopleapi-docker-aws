@@ -17,7 +17,7 @@ services:
     networks:
       - peopleapi-network
   peopleapi:
-    image: peopleapi
+    image: peopleapi-docker-aws
     restart: always
     build:
       context: .

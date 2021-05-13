@@ -18,7 +18,7 @@ data class PersonVO (
 
     @field: Email(message = "Invalid email")
     var email: String? = null,
-    
+
 ) {
     fun toModel(): Person = Person(this.id, this.name, this.cpf, this.email)
 }
