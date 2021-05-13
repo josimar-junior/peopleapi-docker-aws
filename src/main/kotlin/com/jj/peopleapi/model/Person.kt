@@ -19,8 +19,6 @@ data class Person (
 
     var email: String? = null,
 ) {
-    fun isNew(): Boolean = id == null
-    fun alreadyExist(): Boolean = id != null
     fun toVO(): PersonVO {
         return PersonVO(this.id, this.name, this.cpf, this.email)
     }
