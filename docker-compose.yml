@@ -1,0 +1,41 @@
+version: '3.4'
+
+volumes:
+  postgres_data:
+    driver: local
+
+services:
+  postgresapi:
+    image: postgres:10.5-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=peopleapi
+      - POSTGRES_PASSWORD=peopleapi
+      - POSTGRES_DB=peopleapi_db
+    networks:
+      - peopleapi-network
+  peopleapi:
+    image: peopleapi
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    working_dir: /
+    ports:
+      - 8080:8080
+    command: mvn spring-boot:run
+    links:
+      - postgresapi
+    depends_on:
+      - postgresapi
+    networks:
+      - peopleapi-network
+networks:
+  peopleapi-network:
+    driver: bridge
+
+
+
+

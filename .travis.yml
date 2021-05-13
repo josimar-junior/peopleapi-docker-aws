@@ -1,0 +1,23 @@
+language: java
+jdk:
+  - oraclejdk11
+before_install:
+  - sudo apt-get update
+  - cd app/
+  - echo "Let's start Gradle Build!"
+  - ./gradlew build
+  - cd ..
+  - echo "We are in the Docker folder!"
+script:
+  - docker-compose build
+before_deploy:
+  echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
+deploy:
+  provider: script
+  script:
+    docker tag peopleapi-docker-aws:latest 967049/peopleapi-docker-aws:latest;
+    docker push 967049/peopleapi-docker-aws;
+  on:
+    branch: main
+notifications:
+  email: false
