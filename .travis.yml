@@ -3,10 +3,8 @@ jdk:
   - oraclejdk11
 before_install:
   - sudo apt-get update
-  - cd app/
   - echo "Let's start Gradle Build!"
   - ./gradlew build
-  - cd ..
   - echo "We are in the Docker folder!"
 script:
   - docker-compose build
