@@ -23,6 +23,6 @@ spring:
 spring:
   profiles: prod
   datasource:
-    url: jdbc:postgresql://postgresapi:5432/peopleapi_db
+    url: jdbc:postgresql://peopleapidockeraws.cm3o8nwxvkx4.us-east-1.rds.amazonaws.com:5432/peopleapi_db
     username: peopleapi
     password: peopleapi
