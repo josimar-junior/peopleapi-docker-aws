@@ -6,6 +6,7 @@ import kotlin.jvm.Throws
 
 interface PersonService {
     fun findAll(): List<Person>
+    fun findById(id: Long): Person?
 
     @Throws(ExistingCPFException::class)
     fun save(person: Person): Person

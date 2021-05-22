@@ -3,6 +3,7 @@ package com.jj.peopleapi.resource
 import com.jj.peopleapi.model.Person
 import com.jj.peopleapi.service.PersonService
 import com.jj.peopleapi.vo.PersonVO
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
@@ -20,6 +21,14 @@ class PersonResource (private val service: PersonService) {
             .stream()
             .map(Person::toVO)
             .collect(Collectors.toList()))
+    }
+
+    @GetMapping("/{id}")
+    fun findById(@PathVariable id: Long): ResponseEntity<PersonVO> {
+        val person = service.findById(id)
+        return if (person == null)
+            ResponseEntity.notFound().build()
+        else ResponseEntity.ok(person.toVO())
     }
 
     @PostMapping
