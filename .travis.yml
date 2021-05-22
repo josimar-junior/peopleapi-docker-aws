@@ -1,6 +1,8 @@
 language: java
 jdk:
   - oraclejdk11
+python:
+  - "3.6"
 before_install:
   - sudo apt-get update
   - echo "Let's start Gradle Build!"
