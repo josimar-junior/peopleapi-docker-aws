@@ -13,7 +13,7 @@ before_deploy:
 deploy:
   provider: script
   script:
-    docker tag peopleapi-docker-aws:latest 967049/peopleapi-docker-aws:$TRAVIS_JOB_ID;
+    docker tag peopleapi-docker-aws:latest 967049/peopleapi-docker-aws:latest;
     docker push 967049/peopleapi-docker-aws;
   on:
     branch: main
@@ -28,8 +28,8 @@ after_success:
   - pip3 install awscli --upgrade --user
   - export PATH=$PATH:$HOME/.local/bin
   - eval $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
-  - docker tag peopleapi-docker-aws:latest $IMAGE_REPO_URL:$TRAVIS_JOB_ID
-  - docker push $IMAGE_REPO_URL:$TRAVIS_JOB_ID
+  - docker tag peopleapi-docker-aws:latest $IMAGE_REPO_URL:latest
+  - docker push $IMAGE_REPO_URL:latest
 
   - add-apt-repository ppa:eugenesan/ppa
   - apt-get update
