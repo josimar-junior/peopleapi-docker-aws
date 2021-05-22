@@ -13,7 +13,7 @@ before_deploy:
 deploy:
   provider: script
   script:
-    docker tag peopleapi-docker-aws:latest 967049/peopleapi-docker-aws::$TRAVIS_JOB_ID;
+    docker tag peopleapi-docker-aws:latest 967049/peopleapi-docker-aws:$TRAVIS_JOB_ID;
     docker push 967049/peopleapi-docker-aws;
   on:
     branch: main
