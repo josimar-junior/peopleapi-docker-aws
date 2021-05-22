@@ -1,8 +1,6 @@
 language: java
 jdk:
   - oraclejdk11
-python:
-  - "3.6"
 before_install:
   - sudo apt-get update
   - echo "Let's start Gradle Build!"
@@ -20,7 +18,7 @@ deploy:
   on:
     branch: main
 after_success:
-  - sudo apt-get -y install python3-pip python-dev
+  - sudo apt-get -y install python3-pip python3.7
   - sudo pip3 install -U setuptools
   - sudo pip3 install -U virtualenvwrapper
   - python3 -V
