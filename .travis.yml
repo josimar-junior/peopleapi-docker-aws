@@ -1,6 +1,7 @@
+sudo: required
 language: java
 python:
-  - 3.6
+  - "3.6"
 jdk:
   - oraclejdk11
 before_install:
