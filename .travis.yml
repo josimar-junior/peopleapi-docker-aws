@@ -1,4 +1,5 @@
 sudo: required
+dist: bionic
 language: java
 python:
   - "3.6"
