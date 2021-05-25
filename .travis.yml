@@ -35,9 +35,9 @@ after_success:
   - docker tag peopleapi-docker-aws:latest $IMAGE_REPO_URL:latest
   - docker push $IMAGE_REPO_URL:latest
 
-  - add-apt-repository ppa:eugenesan/ppa
-  - apt-get update
-  - apt-get install jq -y
+  - sudo add-apt-repository ppa:eugenesan/ppa
+  - sudo apt-get update
+  - sudo apt-get install jq -y
   - curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | sudo tee -a /usr/bin/ecs-deploy
   - sudo chmod +x /usr/bin/ecs-deploy
   - echo "AWS ECS-Deploy Setup is Configured!"
