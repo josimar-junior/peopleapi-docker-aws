@@ -42,6 +42,6 @@ after_success:
   - sudo chmod +x /usr/bin/ecs-deploy
   - echo "AWS ECS-Deploy Setup is Configured!"
   
-  - ecs-deploy -c $CLUSTER_NAME -n $SERVICE_NAME -i $IMAGE_REPO_URL:$TRAVIS_JOB_ID -r $AWS_DEFAULT_REGION -t 240
+  - ecs-deploy -c $CLUSTER_NAME -n $SERVICE_NAME -i $IMAGE_REPO_URL:latest -r $AWS_DEFAULT_REGION -t 240
 notifications:
   email: false
