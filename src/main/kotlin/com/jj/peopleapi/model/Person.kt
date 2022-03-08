@@ -1,7 +1,12 @@
 package com.jj.peopleapi.model
 
-import com.jj.peopleapi.vo.PersonVO
-import javax.persistence.*
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.SequenceGenerator
+import javax.persistence.Table
 
 @Entity
 @Table(name = "person")
@@ -20,6 +25,4 @@ data class Person (
 
     var email: String? = null,
 
-) {
-    fun toVO(): PersonVO = PersonVO(this.id, this.name, this.cpf, this.email)
-}
+)

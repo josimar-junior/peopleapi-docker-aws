@@ -8,6 +8,8 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
     hibernate:
       ddl-auto: none
+  jackson:
+    default-property-inclusion: non_null
 
 ---
 

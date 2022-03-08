@@ -1,26 +1,36 @@
 package com.jj.peopleapi.service.impl
 
+import com.jj.peopleapi.error.Errors.P101
+import com.jj.peopleapi.error.Errors.P201
 import com.jj.peopleapi.model.Person
 import com.jj.peopleapi.repository.PersonRepository
 import com.jj.peopleapi.service.PersonService
 import com.jj.peopleapi.service.exception.ExistingCPFException
-import org.springframework.data.repository.findByIdOrNull
+import com.jj.peopleapi.service.exception.PersonNotFoundException
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 
 @Service
 class PersonServiceImpl (private val repository: PersonRepository): PersonService {
 
-    override fun findAll(): List<Person> = repository.findAll()
+    override fun findAll(pageable: Pageable): Page<Person> =
+        repository.findAll(pageable)
 
-    override fun findById(id: Long): Person? = repository.findByIdOrNull(id)
+    override fun findById(id: Long): Person? =
+        repository.findById(id).orElseThrow { PersonNotFoundException(P201.message, P201.code) }
 
     override fun save(person: Person): Person {
-        verifyIfPersonExistsWithCpf(person)
+        verifyIfPersonExistsWithCpf(person.cpf)
         return repository.save(person)
     }
 
-    private fun verifyIfPersonExistsWithCpf(person: Person) {
-        val personAux = repository.findByCpf(person.cpf)
-        if(personAux != null) throw ExistingCPFException("Existing cpf")
+    override fun emailAvailable(email: String): Boolean {
+        return !repository.existsByEmail(email)
+    }
+
+    private fun verifyIfPersonExistsWithCpf(cpf: String) {
+        val personAux = repository.findByCpf(cpf)
+        if(personAux.isPresent) throw ExistingCPFException(P101.message.format(cpf), P101.code)
     }
 }

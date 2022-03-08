@@ -1,6 +1,6 @@
 package com.jj.peopleapi.vo
 
-import com.jj.peopleapi.model.Person
+import com.jj.peopleapi.validation.EmailAvailable
 import org.hibernate.validator.constraints.br.CPF
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
@@ -17,8 +17,7 @@ data class PersonVO (
     var cpf: String = "",
 
     @field: Email(message = "Invalid email")
+    @EmailAvailable
     var email: String? = null,
 
-) {
-    fun toModel(): Person = Person(this.id, this.name, this.cpf, this.email)
-}
+)
