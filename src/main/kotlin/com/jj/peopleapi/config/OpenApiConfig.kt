@@ -17,8 +17,8 @@ import org.springframework.context.annotation.Bean
 class OpenApiConfig {
 
     @Bean
-    fun customOpenAPI(): OpenAPI {
-        return OpenAPI()
+    fun customOpenAPI(): OpenAPI =
+        OpenAPI()
             .components(Components())
             .info(
                 io.swagger.v3.oas.models.info.Info()
@@ -30,5 +30,5 @@ class OpenApiConfig {
                             .url("https://github.com/josimar-junior/peopleapi-docker-aws")
                     )
             )
-    }
+
 }
