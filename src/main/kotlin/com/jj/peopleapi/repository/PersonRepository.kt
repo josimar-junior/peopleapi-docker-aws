@@ -9,4 +9,5 @@ import java.util.Optional
 interface PersonRepository: JpaRepository<Person, Long> {
     fun findByCpf(cpf: String): Optional<Person>
     fun existsByEmail(email: String): Boolean
+    fun findByEmail(email: String): Person?
 }

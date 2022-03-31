@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	kotlin("jvm") version "1.4.32"
 	kotlin("plugin.spring") version "1.4.32"
+	kotlin("plugin.jpa") version "1.4.32"
 }
 
 group = "com.jj"
@@ -31,8 +32,13 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-ui:1.5.9")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("io.jsonwebtoken:jjwt:0.9.1")
+
 	runtimeOnly("org.postgresql:postgresql")
+
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
